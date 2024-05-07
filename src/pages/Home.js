@@ -8,6 +8,7 @@ const Home = () => {
   const [fetchError, setFetchError] = useState(null);
   const [smoothies, setSmoothies] = useState(null);
   const [orderBy, setOrderBy] = useState("created_at")
+  const [ascending, setAscending] = useState(false)
 
   function handleDelete(id) {
     setSmoothies(prevSmoothies => {
@@ -20,7 +21,7 @@ const Home = () => {
       const { data, error } = await supabase
         .from("smoothies")
         .select()
-        .order(orderBy, { ascending: false })
+        .order(orderBy, { ascending: ascending })
 
       if (error) {
         setFetchError("couldnt fetch the smoothies")
@@ -36,7 +37,7 @@ const Home = () => {
 
     fetchSmoothies()
 
-  }, [orderBy])
+  }, [orderBy, ascending])
 
   return (
     <div className="page home">
@@ -44,10 +45,14 @@ const Home = () => {
       {smoothies && (
         <div className="smoothies">
           <div className="order-by">
-            <p>Order by:</p>
+            Order by:
+            <br />
             <button onClick={() => setOrderBy('created_at')}>Time Created</button>
             <button onClick={() => setOrderBy('title')}>Title</button>
             <button onClick={() => setOrderBy('rating')}>Rating</button>
+          </div>
+          <div className="toggle">
+            <button onClick={() => { setAscending(!ascending) }}>Toggle ASC/DESC</button>
           </div>
           <div className="smoothie-grid">
             {smoothies.map(smoothie => (

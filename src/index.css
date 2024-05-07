@@ -46,7 +46,7 @@ nav h1 {
 
 /* smoothie grid */
 .smoothie-grid {
-  margin-top: 40px;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
@@ -113,7 +113,18 @@ form button {
 
 /* order-by buttons */
 .order-by button {
+  margin-top: 5px;
   margin-right: 10px;
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: "Poppins";
+  cursor: pointer;
+}
+.toggle button {
+  margin-top: 5px;
   background: var(--primary);
   color: #fff;
   border: 0;
